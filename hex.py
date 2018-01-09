@@ -23,25 +23,18 @@ class State:
     # returns -1 for not end of game, 1 for win, 0 for loss (from perspective of self.turn!!)
     def win_state(self):
         # X connects top-down, Y connects left-right
-
-        opponent = State.X if self.turn == State.O else State.O
-        for line in State.lines:
-            if self.board[line[0]] == self.turn and self.board[line[1]] == self.turn and self.board[line[2]] == self.turn:
-                return 1
-            elif self.board[line[0]] == opponent and self.board[line[1]] == opponent and self.board[line[2]] == opponent:
-                return 0
-        for i in range(len(self.board)):
-            if self.board[i] == State.EMPTY:
-                return -1
         return 0.5
 
     def __repr__(self):
         sym = ['-', 'X', 'O']
+        letter = [ chr(i + ord('a')) for i in range(26) ]
         ret = ''
-        for r in range(0, 3):
-            for c in range(0, 3):
-                ret += sym[self.board[r*3 + c]] + ' '
+        for r in range(n):
+            ret += ' ' * r + letter[r] + ' '
+            for c in range(n):
+                ret += sym[self.board[r][c]] + ' '
             ret += '\n'
+        ret += ' ' * (n + 2) + '0 1 2 3 4 5 6 7 8'
         return ret
 
 class Move:
@@ -51,3 +44,6 @@ class Move:
         return self.index == other.index
     def __ne__(self, other):
         return self.index != other.index
+
+s = State()
+print(s)
