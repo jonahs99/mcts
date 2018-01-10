@@ -30,9 +30,10 @@ class Agent:
             self.root = mcts.Node(None, move)
 
     def think(self):
+        print('thinking...')
         if self.iterations is not None:
             for i in range(self.iterations):
-                    mcts.iterate(self.state, self.root, self.c)
+                mcts.iterate(self.state, self.root, self.c)
         elif self.millis_to_think is not None:
             start_time = _current_time()
             its = 0
@@ -40,6 +41,7 @@ class Agent:
                 for i in range(Agent.its_res):
                     mcts.iterate(self.state, self.root, self.c)
                 its += Agent.its_res
+            print('completed', its, 'iterations')
 
     def pick_move(self):
         best = sorted(self.root.children, key = lambda child: child.n)[-1]

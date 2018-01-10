@@ -7,9 +7,12 @@ class HumanAgent:
     def think(self):
         pass
     def pick_move(self):
-        legal = [move.index for move in self.state.gen_moves()]
+        legal = self.state.gen_moves()
+        legal_notations = [move.__repr__() for move in legal]
         pick = None
-        while pick not in legal:
+        while True:
             print('Please choose a move:', legal)
-            pick = int(input())
-        return self.game.Move(pick)
+            pick = input()
+            match = list(filter(lambda move: pick.startswith(move.__repr__()) or move.__repr__().startswith(pick), legal))
+            if len(match) == 1:
+                return match[0]

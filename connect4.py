@@ -19,16 +19,6 @@ class State:
     def gen_moves(self):
         moves = [Move(i) for i in filter(lambda col: State.EMPTY in self.cols[col], range(7))]
         return moves
-        #moves = []
-        #for col in cols:
-        #    move = State(self.cols)
-        #    r = 0
-        #    while self.cols[col][r] != State.EMPTY:
-        #        r += 1
-        #    move.cols[col][r] = self.turn
-        #    move.turn = State.X if self.turn == State.O else State.O
-        #    moves.append(move)
-        #return moves
 
     def make_move(self, move):
         r = 0
@@ -84,3 +74,5 @@ class Move:
         return self.index == other.index
     def __ne__(self, other):
         return self.index != other.index
+    def __repr__(self):
+        return str(self.index)

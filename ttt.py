@@ -59,3 +59,5 @@ class Move:
         return self.index == other.index
     def __ne__(self, other):
         return self.index != other.index
+    def __repr__(self):
+        return str(self.index)
