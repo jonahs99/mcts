@@ -19,7 +19,11 @@ class Agent:
 
         self.state = game.State()
         self.root = mcts.Node(None, None)
-    
+
+    def reset(self):
+        self.state = game.State()
+        self.root = mcts.Node(None, None)
+
     def apply_move(self, move):
         self.state.make_move(move)
         match = list(filter(lambda node: node.move == move, self.root.children))
